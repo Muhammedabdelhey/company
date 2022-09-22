@@ -13,11 +13,24 @@ $salary = $data["salary"];
 $phone =  $data["phone"];
 $email = $data["email"];
 $dipid = $data['depid'];
+//update employee
+if (isset($_POST['update'])) {
+    $id = $_POST['id'];
+    $upname = $_POST["upname"];
+    $upsalary = $_POST['upsalary'];
+    $upphone = $_POST['upphone'];
+    $upemail = $_POST['upemail'];
+    $updipid = $_POST['updipid'];
+    $update = "UPDATE `employees` SET `name`= '$upname',`email`='$upemail',`salary`= $upsalary,`phone`= '$upphone',`depid`=$updipid
+     WHERE `id` = $id";
+    mysqli_query($connication, $update);
+    path('employee/view_employee.php');
+  }
 ?>
 <div class="container">
     <div class="row">
         <div class="col-md-6 mt-5 mx-auto">
-            <form action="view_employee.php" method="POST">
+            <form  method="POST">
                 <input hidden name="id" value="<?= $id ?>">
                 <div class="text-center">
                     <h2>update </h2>

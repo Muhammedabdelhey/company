@@ -16,19 +16,7 @@ if (isset($_GET['delete'])) {
     path('employee/view_employee.php');
   }
 
-//update employee
-if (isset($_POST['update'])) {
-    $id = $_POST['id'];
-    $upname = $_POST["upname"];
-    $upsalary = $_POST['upsalary'];
-    $upphone = $_POST['upphone'];
-    $upemail = $_POST['upemail'];
-    $updipid = $_POST['updipid'];
-    $update = "UPDATE `employees` SET `name`= '$upname',`email`='$upemail',`salary`= $upsalary,`phone`= '$upphone',`depid`=$updipid
-     WHERE `id` = $id";
-    mysqli_query($connication, $update);
-    path('employee/view_employee.php');
-  }
+
 
 ?>
 <br>

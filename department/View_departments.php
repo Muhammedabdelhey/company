@@ -29,14 +29,7 @@ if (isset($_GET['delete'])) {
     }
 }
 
-//Update departmnet
-if (isset($_POST['update'])) {
-    $id = $_POST['id'];
-    $name = $_POST['name'];
-    $update = "UPDATE `departments` SET `name`='$name' WHERE `id`=$id";
-    mysqli_query($connication, $update);
-    path('department/View_departments.php');
-}
+
 
 ?>
 <br>
