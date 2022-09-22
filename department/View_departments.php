@@ -11,9 +11,7 @@ $query = mysqli_query($connication, $slelct);
 //delete department
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
-    $select = "SELECT dip_id ,COUNT(employee_id)
-    FROM emp_dep_data
-    GROUP by(dip_id)";
+    $select = "SELECT dip_id  FROM emp_dep_data";
     $result = mysqli_query($connication, $select);
     foreach ($result as $data) {
         if ($id == $data['dip_id']) {
