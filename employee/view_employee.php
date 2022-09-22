@@ -48,7 +48,7 @@ if (isset($_GET['delete'])) {
                         <td><?php echo $data["phone"] ?></td>
                         <td><?php echo $data["dip_name"] ?></td>
                         <td><a class="btn btn-primary" href="update_emp.php?edit=<?= $data["employee_id"] ?>">Edit</a></td>
-                        <td><a class="btn btn-danger" href="view_employee.php?delete=<?= $data["employee_id"] ?>">Delete</a></td>
+                        <td><a onclick="return confirm('are u sure !!')" class="btn btn-danger" href="view_employee.php?delete=<?= $data["employee_id"] ?>">Delete</a></td>
 
                     </tr>
                 <?php
