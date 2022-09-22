@@ -14,15 +14,17 @@ if (isset($_GET['delete'])) {
     $select = "SELECT dip_id  FROM emp_dep_data";
     $result = mysqli_query($connication, $select);
     foreach ($result as $data) {
-        if ($id == $data['dip_id']) {
+        if ($id != $data['dip_id']) {
+            $delete_dep = "DELETE FROM `departments` WHERE `id`=$id";
+            $t = mysqli_query($connication, $delete_dep);
+            if ($t)
+                path('department/View_departments.php');
+        } else {
             echo "<div class ='alert alert-danger' role='alert'>
             Can't Delete This Department This Department have Emplyees
                  </div>";
-        } else {
-            $delete_dep = "DELETE FROM `departments` WHERE `id`=$id";
-            $t=mysqli_query($connication, $delete_dep);
-            if($t)
-            path('department/View_departments.php');
+                 break;
+
         }
     }
 }
@@ -31,9 +33,9 @@ if (isset($_GET['delete'])) {
 
 ?>
 <br>
-  <div class="text-center">
+<div class="text-center">
     <h2>View Departments </h2>
-  </div>
+</div>
 <div class="container">
     <div class="row">
         <div class="col-md-7 mt-5 mx-auto">
@@ -50,8 +52,8 @@ if (isset($_GET['delete'])) {
                     <tr>
                         <td><?php echo $data['id'] ?></td>
                         <td><?php echo $data['name'] ?></td>
-                        <td><a class="btn btn-danger" href="View_departments.php?delete=<?= $data["id"] ?>">Delete</a></td>
-                        <td><a onclick="return confirm('are u sure !!')" class="btn btn-primary" href="update_dep.php?id=<?= $data["id"] ?>">Edit</a></td>
+                        <td><a onclick="return confirm('are u sure !!')" class="btn btn-danger" href="View_departments.php?delete=<?= $data["id"] ?>">Delete</a></td>
+                        <td><a class="btn btn-primary" href="update_dep.php?id=<?= $data["id"] ?>">Edit</a></td>
                     </tr>
                 <?php } ?>
             </table>
