@@ -50,7 +50,7 @@ if (isset($_GET['delete'])) {
                         <td><?php echo $data['id'] ?></td>
                         <td><?php echo $data['decripation'] ?></td>
                         <td><a class="btn btn-primary" href="update_role.php?id=<?= $data["id"] ?>">Edit</a></td>
-                        <td><a class="btn btn-danger" href="view_roles.php?delete=<?= $data["id"] ?>">Delete</a></td>
+                        <td><a class="btn btn-danger" onclick="return confirm('are u sure !!')" href="view_roles.php?delete=<?= $data["id"] ?>">Delete</a></td>
                     </tr>
                 <?php } ?>
             </table>

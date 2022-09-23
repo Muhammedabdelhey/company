@@ -27,10 +27,14 @@ if (isset($_POST['update'])) {
     $upemail = $_POST['upemail'];
     if ($_SESSION['admin']['role'] == 0) {
         $roleid = $_POST['uproleid'];
+        if($roleid==1){
+            $_SESSION['admin']['role'] =1;
+        }
     }
     $update = "UPDATE `admins` SET `name`= '$upname',`email`='$upemail',`image`='$location',`password`='$pass',`role_id`=$roleid
      WHERE `id` = $id";
     mysqli_query($connication, $update);
+    
     path('admin/view_admins.php');
 }
 ?>

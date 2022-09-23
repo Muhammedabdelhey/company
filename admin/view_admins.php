@@ -24,7 +24,7 @@ if (isset($_GET['delete'])) {
     mysqli_query($connication, $delete);
     path('admin/view_admins.php');
     unlink("$image");
-    if ($_SESSION['admin']['role'] != 0) {
+    if ($_SESSION['admin']['id'] == $id ) {
         session_unset();
         session_destroy();
     }
@@ -49,10 +49,10 @@ if (isset($_GET['delete'])) {
                 ?>
                     <tr>
                         <td>
-                            <a class="dropdown-item text-dark" href="show_admin.php?show=<?= $data["id"] ?>"><?= $data["id"] ?></a>
+                            <a class="dropdown-item text-dark" method="POST" href="show_admin.php?show=<?= $data["id"] ?>"><?= $data["id"] ?></a>
                         </td>
                         <td>
-                            <a class="dropdown-item text-dark" href="show_admin.php?show=<?= $data["id"] ?>"><?= $data["name"] ?></a>
+                            <a class="dropdown-item text-dark" method="POST" href="show_admin.php?show=<?= $data["id"] ?>"><?= $data["name"] ?></a>
                         </td>
                     </tr>
                 <?php
