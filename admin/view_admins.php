@@ -3,43 +3,39 @@ include '../genral/DB.php';
 include '../genral/functions.php';
 include '../shared/header.php';
 include '../shared/navbar.php';
-auth();
-//select employees
-$slelct = "SELECT * FROM `emp_dep_data` ORDER BY `employee_id`";
-$query = mysqli_query($connication, $slelct);
+//select employeesa
 
+auth();
+$ID = $_SESSION['admin']['id'];
+$slelct = "SELECT * FROM `admins` where `id`=$ID";
+$query = mysqli_query($connication, $slelct);
+if ($_SESSION['admin']['role'] == 0) {
+    $slelct = "SELECT * FROM `admins`";
+    $query = mysqli_query($connication, $slelct);
+}
 //delete employee
 if (isset($_GET['delete'])) {
     $id = $_GET['delete'];
-    $selectOne = "SELECT * FROM employees where id =$id";
+    $selectOne = "SELECT * FROM admins where id =$id";
     $ss = mysqli_query($connication, $selectOne);
     $row = mysqli_fetch_assoc($ss);
-    $delete = "DELETE FROM `employees` WHERE id=$id";
+    $delete = "DELETE FROM `admins` WHERE id=$id";
     $image = $row['image'];
     mysqli_query($connication, $delete);
-    path('employee/view_employee.php');
+    path('admin/view_admins.php');
     unlink("$image");
+    if ($_SESSION['admin']['role'] != 0) {
+        session_unset();
+        session_destroy();
+    }
 }
-if(isset($_POST['search'])){
-    $name=$_POST['name'];
-    $name="'%".$name."%'";
-    $select="SELECT * FROM `emp_dep_data` where `employee_name` like $name ";
-    $query = mysqli_query($connication, $select);
-}
+
 
 ?>
 <br>
 <div class="text-center">
-    <h2>View Employees </h2>
+    <h2>View Admins </h2>
 </div>
-<form  method="POST">
-    <div class="input-group mx-5">
-        <div class="form-outline">
-            <input type="text" name="name" class="form-control" />
-        </div>
-        <button name='search' class="btn btn-primary mx-3"> search </button>
-    </div>
-</form>
 <div class="container">
     <div class="row">
         <div class="col-md-8 mt-4 mx-auto">
@@ -53,10 +49,10 @@ if(isset($_POST['search'])){
                 ?>
                     <tr>
                         <td>
-                            <a class="dropdown-item text-dark" href="show_emp.php?show=<?= $data["employee_id"] ?>"><?= $data["employee_id"] ?></a>
+                            <a class="dropdown-item text-dark" href="show_admin.php?show=<?= $data["id"] ?>"><?= $data["id"] ?></a>
                         </td>
                         <td>
-                            <a class="dropdown-item text-dark" href="show_emp.php?show=<?= $data["employee_id"] ?>"><?= $data["employee_name"] ?></a>
+                            <a class="dropdown-item text-dark" href="show_admin.php?show=<?= $data["id"] ?>"><?= $data["name"] ?></a>
                         </td>
                     </tr>
                 <?php

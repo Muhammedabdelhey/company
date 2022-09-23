@@ -3,14 +3,14 @@ include '../genral/DB.php';
 include '../genral/functions.php';
 include '../shared/header.php';
 include '../shared/navbar.php';
-auth();
+admin_auth();
 if (isset($_GET['add']) && !empty($_GET['name'])) {
-    $depname = $_GET['name'];
-    $insert = "INSERT INTO `departments` VALUES(null,'$depname')";
+    $role = $_GET['name'];
+    $insert = "INSERT INTO `roles` VALUES(null,'$role')";
     $insertDepartment=mysqli_query($connication, $insert);
     testMessage($insertDepartment, "insert Department");
     if($insertDepartment){
-    path('department/add_department.php');
+    path('Roles/add_role.php');
     }
 
 }
@@ -21,13 +21,13 @@ if (isset($_GET['add']) && !empty($_GET['name'])) {
             <div class="col-md-7 mt-3 mx-auto">
                 <form>
                     <div class="text-center">
-                        <h2>Admin</h2>
+                        <h2>Add Role</h2>
                     </div>
                     <div class="form-group">
-                        <label for="name">Department Name </label><br>
+                        <label for="name">Role Name </label><br>
                         <input type="text" class="form-control" name="name">
                     </div>
-                    <button class="btn btn-primary" name="add">Add Department</button>
+                    <button class="btn btn-primary" name="add">Add </button>
                 </form>
             </div>
         </div>

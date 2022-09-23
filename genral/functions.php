@@ -19,3 +19,19 @@ function path($go)
     location.replace('/ODC%20BackEnd/s6/$go')
     </script>";
 }
+function auth()
+{
+    if (!$_SESSION['admin']) {
+        path("auth/login.php");
+        return false;
+    }
+    return true;
+}
+function admin_auth(){
+    auth();
+    if ($_SESSION['admin']['role'] != 0) {
+        path('404.php');
+        return false;
+    }
+    return true;
+}
