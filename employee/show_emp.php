@@ -26,7 +26,7 @@ $image=$data['image'];
             <div class="col-lg-4">
                 <div class="card mb-4">
                     <div class="card-body text-center">
-                        <img src="/ODC BackEnd/S6/employee/<?=$image?>" alt=""  height='300' >
+                        <img src="/ODC BackEnd/S6/employee/<?=$image?>" alt="" width="250" height='300' >
                     </div>
                 </div>
             </div>
